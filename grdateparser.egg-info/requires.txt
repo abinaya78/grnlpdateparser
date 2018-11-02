@@ -1,7 +1,4 @@
 nltk
 sklearn
 numpy
-pickle
 datetime
-dateutil
-calendar
