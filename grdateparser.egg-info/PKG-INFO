@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: grdateparser
+Version: 0.0.1
+Summary: GRNLP for Text Classification
+Home-page: UNKNOWN
+Author: Gokulraj Ramdass
+Author-email: gokulraj.ramdass@sap.com
+License: UNKNOWN
+Description: GRNLP for DATE PARSER
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
