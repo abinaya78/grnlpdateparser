@@ -4,6 +4,7 @@ import math
 from datetime import timedelta
 from dateutil.relativedelta import relativedelta
 from dateutil.relativedelta import SU, MO, TU, WE, TH, FR, SA
+from dateutil import parser
 import calendar
 import re
 
@@ -501,6 +502,13 @@ class EntityParser(object):
                         val = self.getQuarterNumber(self.w[self.p.index(c)])
                         setattr(self, 'QUARTERNOMONTH', val)
 
+                    if c == 'DIRECT_DATE':
+                        val = self.w[self.p.index(c)]
+                        DDATE =  parser.parse(val)
+                        setattr(self, 'DATE', DDATE.day)
+                        setattr(self, 'MONTH', DDATE.month)
+                        setattr(self, 'YEAR', DDATE.year)
+
             except:
                 continue
 
@@ -543,5 +551,8 @@ class EntityParser(object):
 
         if "DAYS" in self.__dict__:
             variables["DAYS"] = self.__dict__["DAYS"]
+
+        if "DIRECT_DATE" in self.__dict__:
+            variables["DIRECT_DATE"] = self.__dict__["DIRECT_DATE"]
 
         return variables

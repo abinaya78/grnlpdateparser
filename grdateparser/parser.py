@@ -1,14 +1,14 @@
-from .features import FeatureExtractor
-from .model import TaggerModel, DatesSettingsModel
-from .dateutility import  EnddateParser, EntityParser, RulesParser, DateAttributes
+from features import FeatureExtractor
+from model import TaggerModel, DatesSettingsModel
+from dateutility import  EnddateParser, EntityParser, RulesParser, DateAttributes
 
 BASE_STEP = ["B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8"]
 RULE_STEP = ["R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10", "R11", "R12"]
 
 class DateParserFromText(object):
 
-    def __init__(self, ):
-        self.TEXT = ""
+    def __init__(self, stext=""):
+        self.TEXT = stext
 
     def getFeatures(self):
         fe = FeatureExtractor(self.TEXT)
@@ -37,7 +37,7 @@ class DateParserFromText(object):
         self.SEGMENTS = []
         self.MIDDLERS = []
         self.IS_RANGE = False
-        CONSTANTS = ["C_YEAR", "C_QUARTER", "C_MONTH", "C_WEEK", "C_DAY", "MONTHNAME", "DAYNAME", 'QUARTERNO']
+        CONSTANTS = ["C_YEAR", "C_QUARTER", "C_MONTH", "C_WEEK", "C_DAY", "MONTHNAME", "DAYNAME", 'QUARTERNO', 'DIRECT_DATE']
         try:
             idx = self.NEW_PATTERNS.index("WORD_MIDDLE")
             print("WORD_MIDDLE")
@@ -77,12 +77,7 @@ class DateParserFromText(object):
             self.OUTPUT[i] = DateParser(segment["words"], segment["patterns"]).process()
 
 
-    def parse(self, stext=""):
-
-        if stext == "":
-            raise "Empty text"
-
-        self.TEXT = stext
+    def parse(self):
         self.getFeatures()
         self.getPatterns()
         self.getWordsandPatterns()
